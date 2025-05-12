@@ -2,7 +2,7 @@
 
 **JustAnotherPassword** is a lightweight and privacy-focused Chrome extension that generates secure, pseudo-random passwords using CyberChef-style logic and a custom base64 alphabet.
 
-![screenshot](justanotherpassword.png) 
+![screenshot](JustAnotherPassword.png) 
 
 ## Features
 
