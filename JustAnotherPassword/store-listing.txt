@@ -2,25 +2,26 @@ Name:
 JustAnotherPassword
 
 Short Description:
-A minimal password generator using CyberChef-style logic and a custom base64 alphabet.
+A minimal password generator inspired by CyberChef.
 
 Long Description:
-JustAnotherPassword is a lightweight and privacy-focused password generator extension for Chrome.
+JustAnotherPassword is a lightweight and privacy-focused Chrome extension that generates secure, readable passwords using client-side cryptography + base64 encoding.
+
+🔐 How it works:
+- Random bytes are securely generated using the browser’s cryptography API
+- These bytes are converted into a hex string
+- The hex string is then base64-encoded using a custom, shuffled alphabet
+- Output is readable, copyable, and strong
+
+✅ Works completely offline  
+✅ Uses a custom scroll wheel interface to select password length  
+✅ No tracking, no servers, no saved data  
+✅ Clean, minimalist interface — just generate and go
     
 Features:
-- Generates secure passwords using a custom base64 alphabet
-- Built with client-side cryptography (no data leaves your browser)
-- Customizable length via scroll input (from 4 to 252 characters)
-- Passwords are encoded using a user-defined base64 scheme
-- Simple 2-step popup flow: Generate → Copy
-    
-Ideal for developers, engineers, and security-conscious users who want transparent, on-demand password creation without fluff.
-
-
-Features:
-- Uses secure random values via window.crypto
-- Converts bytes to base64 using Hazz15 alphabet
-- Works entirely offline
-- No tracking or telemetry
-- Supports up to 252-character passwords
-- Clipboard copy functionality
+- Secure passwords via random bytes → hex → base64
+- Uses a custom base64 alphabet for obfuscation
+- Works entirely offline (no tracking, no telemetry)
+- Scroll wheel selects password length from predefined sizes
+- One-click create, one-click copy feature
+- Built for security-conscious users needing a fast password when default tools don't provide one
