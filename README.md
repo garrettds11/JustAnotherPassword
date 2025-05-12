@@ -37,7 +37,7 @@ This process enhances readability while preserving full entropy from the origina
 
 You can install the extension via the [Chrome Web Store](#) once published, or manually:
 
-1. Clone this repo or [download the ZIP](https://github.com/garrettds11/justanotherpassword/releases).
+1. Clone this repo or [download the ZIP](https://github.com/garrettds11/JustAnotherPassword/releases).
 2. Visit `chrome://extensions/` in your browser.
 3. Enable **Developer Mode**.
 4. Click **Load unpacked** and select the extracted folder.
@@ -45,7 +45,7 @@ You can install the extension via the [Chrome Web Store](#) once published, or m
 ## Privacy
 
 JustAnotherPassword does not collect or transmit any user data. All operations are performed locally in your browser.  
-View the [Privacy Policy](https://garrettds11.github.io/justanotherpassword/privacy.html)
+View the [Privacy Policy](https://garrettds11.github.io/JustAnotherPassword/privacy.html)
 
 ## Project Structure
 
