@@ -69,7 +69,7 @@ const lengthDiv = document.getElementById("length");
 
 lengthDiv.addEventListener("wheel", (e) => {
   e.preventDefault();
-  index += (e.deltaY < 0) ? -1 : 1;
+  index += (e.deltaY < 0) ? 1 : -1;
   index = Math.max(0, Math.min(allowedLengths.length - 1, index));
   lengthDiv.textContent = "Length: " + allowedLengths[index].chars + " chars";
 });
@@ -92,6 +92,23 @@ document.getElementById("generate").addEventListener("click", () => {
   }
 
   const pass = customEncoded.slice(0, allowedLengths[index].chars);
-  chrome.runtime.sendMessage({ password: pass });
-  window.close();
+  chrome.storage.local.set({ generatedPassword: pass }, () => {
+    const width = 550;
+    const height = 325;
+    const left = (screen.width - width) / 2;
+    const top = (screen.height - height) / 2;
+  
+    window.open(
+      'password.html',
+      '_blank',
+      `width=${width},height=${height},left=${left},top=${top}`
+    );
+  });  
+  console.log("Password added to storage.");
 });
+
+setTimeout(() => {
+  chrome.storage.local.get("generatedPassword", (r) => {
+    console.log("Stored password:", r.generatedPassword);
+  });
+}, 1000);
