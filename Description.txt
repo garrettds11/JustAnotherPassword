@@ -1,0 +1,20 @@
+JustAnotherPassword is a lightweight and privacy-focused Chrome extension that generates secure, readable passwords using client-side cryptography + base64 encoding.
+
+🔐 How it works:
+- Random bytes are securely generated using the browser’s cryptography API
+- These bytes are converted into a hex string
+- The hex string is then base64-encoded using a custom, shuffled alphabet
+- Output is readable, copyable, and strong
+
+✅ Works completely offline  
+✅ Uses a custom scroll wheel interface to select password length  
+✅ No tracking, no servers, no saved data  
+✅ Clean, minimalist interface — just generate and go
+    
+Features:
+- Secure passwords via random bytes → hex → base64
+- Uses a custom base64 alphabet for obfuscation
+- Works entirely offline (no tracking, no telemetry)
+- Scroll wheel selects password length from predefined sizes
+- One-click create, one-click copy feature
+- Built for security-conscious users needing a fast password when default tools don't provide one
