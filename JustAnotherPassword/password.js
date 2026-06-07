@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   chrome.storage.local.get("generatedPassword", (result) => {
-    console.log("Retrieved from chrome.storage.local:", result);
     const pw = result.generatedPassword;
     const pwEl = document.getElementById("pw");
 
@@ -9,6 +8,28 @@ document.addEventListener("DOMContentLoaded", () => {
         pwEl.textContent = "No password in memory. Please generate a new one.";
       }
       return;
+    }
+
+    function showClipboardInfo() {
+      const infoPopup = document.getElementById("clipboard-info");
+      if (infoPopup) {
+        infoPopup.style.display = "flex";
+      }
+    }
+
+    function hideClipboardInfo() {
+      const infoPopup = document.getElementById("clipboard-info");
+      if (infoPopup) {
+        infoPopup.style.display = "none";
+      }
+    }
+
+    function clearStoredPassword(logMessage) {
+      chrome.storage.local.remove("generatedPassword", () => {
+        if (logMessage) {
+          console.log(logMessage);
+        }
+      });
     }
 
     function showExpirationNotice() {
@@ -21,12 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       let timeLeft = 30;
-      countdowns.forEach(el => el.textContent = " " + timeLeft + " ");
+      countdowns.forEach(el => {
+        el.textContent = ` ${timeLeft} `;
+      });
+
       bar.style.display = "flex";
 
       const timer = setInterval(() => {
         timeLeft--;
-        countdowns.forEach(el => el.textContent = timeLeft);
+
+        countdowns.forEach(el => {
+          el.textContent = ` ${timeLeft} `;
+        });
 
         if (timeLeft <= 0) {
           clearInterval(timer);
@@ -65,18 +92,23 @@ document.addEventListener("DOMContentLoaded", () => {
               window.close();
             });
           })
-          .catch(err => {
-            console.warn("Clipboard could not be cleared:", err);
-            const warning = document.querySelector(".warning");
-            if (warning) warning.style.display = "flex";
+          .catch((err) => {
+            console.info("Clipboard could not be cleared manually:", err);
+            showClipboardInfo();
+
             chrome.storage.local.remove("generatedPassword", () => {
-              console.log("Password cleared despite clipboard error.");
+              console.log("Password cleared despite clipboard clear failure.");
               window.close();
             });
           });
       };
     } else {
       console.warn("Close button not found.");
+    }
+
+    const infoCloseBtn = document.getElementById("clipboard-info-close");
+    if (infoCloseBtn) {
+      infoCloseBtn.onclick = hideClipboardInfo;
     }
   });
 });
@@ -90,12 +122,20 @@ setTimeout(() => {
 setTimeout(() => {
   if (document.hasFocus()) {
     navigator.clipboard.writeText("Clipboard cleared.")
-      .then(() => console.log("Clipboard overwritten after timeout."));
+      .then(() => console.log("Clipboard overwritten after timeout."))
+      .catch((err) => {
+        console.info("Clipboard overwrite failed after timeout:", err);
+        const infoPopup = document.getElementById("clipboard-info");
+        if (infoPopup) {
+          infoPopup.style.display = "flex";
+        }
+      });
   } else {
-    console.warn("Clipboard not cleared — document not focused.");
-  const infoPopup = document.getElementById("clipboard-info");
-  if (infoPopup) infoPopup.style.display = "flex";
-    const warning = document.querySelector(".warning");
-    if (warning) warning.style.display = "flex";
+    console.info("Clipboard not cleared because document was not focused.");
+
+    const infoPopup = document.getElementById("clipboard-info");
+    if (infoPopup) {
+      infoPopup.style.display = "flex";
+    }
   }
 }, 30000);

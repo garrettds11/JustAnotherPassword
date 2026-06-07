@@ -2,26 +2,42 @@ Name:
 JustAnotherPassword
 
 Short Description:
-A minimal password generator inspired by CyberChef.
+A minimal local password generator using secure browser cryptography.
 
 Long Description:
-JustAnotherPassword is a lightweight and privacy-focused Chrome extension that generates secure, readable passwords using client-side cryptography + base64 encoding.
+JustAnotherPassword is a lightweight and privacy-focused Chrome extension that generates strong, readable passwords locally in your browser.
 
 🔐 How it works:
-- Random bytes are securely generated using the browser’s cryptography API
-- These bytes are converted into a hex string
-- The hex string is then base64-encoded using a custom, shuffled alphabet
-- Output is readable, copyable, and strong
+- Password characters are generated using the browser’s cryptography API
+- Output is selected directly from a broad password alphabet
+- Password length is selected from predefined values using the scroll wheel
+- Generated passwords can be copied with one click
+- Temporary storage is cleared automatically after a short timeout
 
-✅ Works completely offline  
-✅ Uses a custom scroll wheel interface to select password length  
-✅ No tracking, no servers, no saved data  
+✅ Works completely offline
+✅ No tracking, no servers, no telemetry
+✅ No browsing data access
+✅ No accounts or sign-in required
 ✅ Clean, minimalist interface — just generate and go
-    
+
 Features:
-- Secure passwords via random bytes → hex → base64
-- Uses a custom base64 alphabet for obfuscation
-- Works entirely offline (no tracking, no telemetry)
+- Secure password generation using browser-native cryptographic randomness
+- Broad character set for more varied password output
 - Scroll wheel selects password length from predefined sizes
 - One-click create, one-click copy feature
-- Built for security-conscious users needing a fast password when default tools don't provide one
+- Temporary local storage used only to pass the generated password between extension windows
+- Built for security-conscious users who need a fast, local password generator
+
+Release Verification:
+The source code for JustAnotherPassword is publicly available on GitHub. For each release, the SHA-256 hash of the packaged Chrome Web Store ZIP is published in the GitHub README or release notes.
+
+Users who want to verify the package can download the release ZIP from GitHub, calculate its SHA-256 hash locally, and compare it against the hash published in the web store before installing the extension.
+
+Windows:
+Get-FileHash .\JustAnotherPassword.zip -Algorithm SHA256
+
+macOS:
+shasum -a 256 JustAnotherPassword.zip
+
+Linux:
+sha256sum JustAnotherPassword.zip
