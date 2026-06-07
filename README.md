@@ -47,7 +47,7 @@ Each release package can be verified with the SHA-256 hash below. Match the ZIP 
 ```text
 Version: 3.1.0
 File: JustAnotherPassword.zip
-SHA-256: <PASTE_HASH_HERE>
+SHA-256: CD16DBA2CC6E816D2275D30DA73212FCC47776C3807E4BE60B1573F5C43578E4
 
 ## Privacy
 
